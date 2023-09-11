@@ -1,0 +1,29 @@
+name: Build and Compile Arduino Code
+
+on:
+  push:
+    branches:
+      - main  # Change this to the default branch of your repository
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # You can change the runner OS if needed
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Arduino CLI
+      uses: per1234/setup-arduino@v1
+      with:
+        arduino-version: 'latest'  # You can specify a specific Arduino CLI version if needed
+
+    - name: Compile Arduino code
+      run: |
+        arduino-cli compile --fqbn esp32:esp32:esp32 your-arduino-sketch-folder
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: compiled-code
+        path: ${{ github.workspace }}/your-arduino-sketch-folder/.build/esp32/esp32/your-sketch-name.bin
