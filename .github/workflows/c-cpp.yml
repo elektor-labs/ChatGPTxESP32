@@ -13,7 +13,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install Arduino CLI
+    - name: Set up Arduino CLI
       run: |
         curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
         export PATH="$HOME/bin:$PATH"
@@ -22,7 +22,7 @@ jobs:
 
     - name: Compile Arduino code
       run: |
-        arduino-cli compile --fqbn esp32:esp32:esp32 /github/workspace/ChatGPTxESP32_1/ChatGPTxESP32_1.ino
+        arduino-cli compile --fqbn esp32:esp32:esp32 ChatGPTxESP32_1/ChatGPTxESP32_1.ino
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
