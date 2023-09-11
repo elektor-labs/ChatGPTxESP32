@@ -16,12 +16,13 @@ jobs:
     - name: Set up Arduino CLI
       run: |
         curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
-        export PATH="$HOME/bin:$PATH"
+        echo 'export PATH="$HOME/bin:$PATH"' >> $GITHUB_ENV
         arduino-cli core update-index
         arduino-cli core install esp32:esp32
 
     - name: Compile Arduino code
       run: |
+        export PATH="$HOME/bin:$PATH"
         arduino-cli compile --fqbn esp32:esp32:esp32 ChatGPTxESP32_1/ChatGPTxESP32_1.ino
 
     - name: Upload artifact
