@@ -20,7 +20,6 @@
     # Path in which to save a JSON formatted file containing data from the sketch compilations
     sketches-report-path: # default is sketches-reports
     # GitHub access token used to get information from the GitHub API.
-Only needed if you are using the deltas report feature in a private repository.
     github-token: # default is 
     # Set to true to cause the action to determine the change in memory usage and compiler warnings of the compiled sketches between the head and base refs of a PR and the immediate parent commit of a push
     enable-deltas-report: # default is false
