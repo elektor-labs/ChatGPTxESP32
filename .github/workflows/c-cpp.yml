@@ -14,16 +14,15 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up Arduino CLI
-      uses: per1234/setup-arduino@v1
-      with:
-        arduino-version: 'latest'  # You can specify a specific Arduino CLI version if needed
+      uses: arduino/setup-arduino@v1
 
     - name: Compile Arduino code
       run: |
-        arduino-cli compile --fqbn esp32:esp32:esp32 your-arduino-sketch-folder
+        arduino-cli compile --fqbn esp32:esp32:esp32 ChatGPTxESP32_1
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: compiled-code
-        path: ${{ github.workspace }}/your-arduino-sketch-folder/.build/esp32/esp32/your-sketch-name.bin
+        path: ${{ github.workspace }}ChatGPTxESP32_1/.build/esp32/esp32/ChatGPTxESP32_1.bin
+
