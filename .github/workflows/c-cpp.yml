@@ -13,16 +13,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Arduino CLI
-      uses: arduino/setup-arduino@v1
+    - name: Install Arduino CLI
+      run: |
+        curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+        export PATH="$HOME/bin:$PATH"
+        arduino-cli core update-index
+        arduino-cli core install esp32:esp32
 
     - name: Compile Arduino code
       run: |
-        arduino-cli compile --fqbn esp32:esp32:esp32 ChatGPTxESP32_1
+        arduino-cli compile --fqbn esp32:esp32:esp32 /github/workspace/ChatGPTxESP32_1/ChatGPTxESP32_1.ino
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: compiled-code
-        path: ${{ github.workspace }}ChatGPTxESP32_1/.build/esp32/esp32/ChatGPTxESP32_1.bin
-
+        path: ${{ github.workspace }}/ChatGPTxESP32_1/.build/esp32/esp32/ChatGPTxESP32_1.ino.bin
