@@ -137,7 +137,7 @@ else if (input == "MYCODE")
 String sendChatGPTRequest(String prompt) {
   String recieved_response= "";
   String apiUrl = "https://api.openai.com/v1/completions";
-  String payload = "{\"prompt\":\"" + prompt + "\",\"max_tokens\":100, \"model\": \"text-davinci-003\"}";
+  String payload = "{\"prompt\":\"" + prompt + "\",\"max_tokens\":100, \"model\": \"gpt-3.5-turbo-instruct\"}";
   HTTPClient http;
   http.begin(apiUrl);
   http.addHeader("Content-Type", "application/json");
